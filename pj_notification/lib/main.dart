@@ -29,7 +29,7 @@ void showNotification(RemoteMessage message) {
             requestBadgePermission: true,
             requestSoundPermission: true,
             requestCriticalPermission:
-                true // Cho phép hiện thị khi khóa màn hình iOS
+                true //Cho phép hiện thị khi khóa màn hình iOS
             ),
       ),
     );
@@ -44,7 +44,7 @@ void showNotification(RemoteMessage message) {
           'High Importance Notifications',
           importance: Importance.max,
           priority: Priority.high,
-          fullScreenIntent: true, // Hiển thị khi khóa màn hình Android
+          fullScreenIntent: true, //Hiển thị khi khóa màn hình Android
           visibility: NotificationVisibility.public,
         ),
         iOS: DarwinNotificationDetails(
@@ -52,7 +52,7 @@ void showNotification(RemoteMessage message) {
             presentBadge: true,
             presentSound: true,
             interruptionLevel:
-                InterruptionLevel.critical // Mức độ ưu tiên cao nhất cho iOS
+                InterruptionLevel.critical //Mức độ ưu tiên cao nhất cho iOS
             ),
       ),
     );

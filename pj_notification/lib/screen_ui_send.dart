@@ -1,16 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'bloc/notification_bloc.dart';
 import 'get_it.dart';
 
 class NotificationSenderScreen extends StatelessWidget {
-  NotificationSenderScreen({super.key});
-
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _bodyController = TextEditingController();
-  final TextEditingController _tokenController = TextEditingController();
+  const NotificationSenderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +19,21 @@ class NotificationSenderScreen extends StatelessWidget {
           );
         },
         builder: (context, state) {
+          final bloc = context.read<NotificationBloc>();
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('Gửi thông báo'),
-            ),
+            appBar: AppBar(title: const Text('Gửi thông báo')),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/device-token'),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, '/device-token'),
                     child: const Text('Xem Token Thiết Bị'),
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: _tokenController,
+                    controller: bloc.tokenController,
                     decoration: const InputDecoration(
                       labelText: 'Device Token',
                       hintText: 'Nhập token của thiết bị nhận',
@@ -48,7 +42,7 @@ class NotificationSenderScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: _titleController,
+                    controller: bloc.titleController,
                     decoration: const InputDecoration(
                       labelText: 'Tiêu đề',
                       hintText: 'Nhập tiêu đề thông báo',
@@ -56,7 +50,7 @@ class NotificationSenderScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: _bodyController,
+                    controller: bloc.bodyController,
                     decoration: const InputDecoration(
                       labelText: 'Nội dung',
                       hintText: 'Nhập nội dung thông báo',
@@ -67,7 +61,14 @@ class NotificationSenderScreen extends StatelessWidget {
                   state.maybeWhen(
                     loading: () => const CircularProgressIndicator(),
                     orElse: () => ElevatedButton(
-                      onPressed: () => _sendNotification(context),
+                      onPressed: () {
+                        final bloc = context.read<NotificationBloc>();
+                        bloc.add(NotificationEvent.sendNotification(
+                          token: bloc.tokenController.text.trim(),
+                          title: bloc.titleController.text.trim(),
+                          body: bloc.bodyController.text.trim(),
+                        ));
+                      },
                       child: const Text('Gửi thông báo'),
                     ),
                   ),
@@ -84,25 +85,5 @@ class NotificationSenderScreen extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message)),
     );
-  }
-
-  void _sendNotification(BuildContext context) {
-    if (_validateInputs()) {
-      context.read<NotificationBloc>().add(
-        NotificationEvent.sendNotification(
-          token: _tokenController.text.trim(),
-          title: _titleController.text.trim(),
-          body: _bodyController.text.trim(),
-        ),
-      );
-    } else {
-      _showSnackBar(context, 'Vui lòng nhập đầy đủ thông tin');
-    }
-  }
-
-  bool _validateInputs() {
-    return _tokenController.text.isNotEmpty &&
-        _titleController.text.isNotEmpty &&
-        _bodyController.text.isNotEmpty;
   }
 }
