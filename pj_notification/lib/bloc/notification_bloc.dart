@@ -48,9 +48,9 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     emit(const NotificationState.loading());
     try {
       final success = await _service.sendNotificationToDevice(
-        deviceToken: tokenController.text.trim(),
-        title: titleController.text.trim(),
-        body: bodyController.text.trim(),
+        deviceToken: event.token,
+        title: event.title,
+        body: event.body,
       );
       emit(success
           ? const NotificationState.success()
