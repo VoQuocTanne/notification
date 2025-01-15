@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "84841466781",
+    "project_id": "payment-24d85",
+    "storage_bucket": "payment-24d85.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84841466781:android:d03fc278491412f8a9fd74",
+        "android_client_info": {
+          "package_name": "com.example.notification_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwbz5S3Hv5NP2QzY5MsEJ1Nmr1ti5ty9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
