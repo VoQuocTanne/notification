@@ -13,34 +13,36 @@ part 'notification_bloc.freezed.dart';
 
 class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   final NotificationService _service;
-  final titleController = TextEditingController();
-  final bodyController = TextEditingController();
+  final callerNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
   final tokenController = TextEditingController();
 
   NotificationBloc(this._service) : super(const NotificationState.initial()) {
-    on<_SendNotification>(_onSendNotification);
+    on<_SendCallNotification>(_onSendCallNotification);
     on<_GetDeviceToken>(_onGetDeviceToken);
+    on<_AcceptCall>(_onAcceptCall);
+    on<_DeclineCall>(_onDeclineCall);
   }
 
   @override
   Future<void> close() {
-    titleController.dispose();
-    bodyController.dispose();
+    callerNameController.dispose();
+    phoneNumberController.dispose();
     tokenController.dispose();
     return super.close();
   }
 
-  bool validateInputs() {
+  bool validateCallInputs() {
     return tokenController.text.isNotEmpty &&
-        titleController.text.isNotEmpty &&
-        bodyController.text.isNotEmpty;
+        callerNameController.text.isNotEmpty &&
+        phoneNumberController.text.isNotEmpty;
   }
 
-  Future<void> _onSendNotification(
-      _SendNotification event,
-      Emitter<NotificationState> emit,
-      ) async {
-    if (!validateInputs()) {
+  Future<void> _onSendCallNotification(
+    _SendCallNotification event,
+    Emitter<NotificationState> emit,
+  ) async {
+    if (!validateCallInputs()) {
       emit(const NotificationState.failure('Vui lòng nhập đầy đủ thông tin'));
       return;
     }
@@ -49,15 +51,30 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     try {
       final success = await _service.sendNotificationToDevice(
         deviceToken: event.token,
-        title: event.title,
-        body: event.body,
+        title: event.callerName,
+        body: event.phoneNumber,
+        callId: event.callId,
       );
       emit(success
           ? const NotificationState.success()
-          : const NotificationState.failure('Send failed'));
+          : const NotificationState.failure('Gửi thông báo thất bại'));
     } catch (e) {
       emit(NotificationState.failure(e.toString()));
     }
+  }
+
+  Future<void> _onAcceptCall(
+    _AcceptCall event,
+    Emitter<NotificationState> emit,
+  ) async {
+    emit(NotificationState.callAccepted(event.callId));
+  }
+
+  Future<void> _onDeclineCall(
+    _DeclineCall event,
+    Emitter<NotificationState> emit,
+  ) async {
+    emit(NotificationState.callDeclined(event.callId));
   }
 
   Future<void> _onGetDeviceToken(

@@ -11,4 +11,8 @@ class NotificationState with _$NotificationState {
   const factory NotificationState.failure(String error) = _Failure;
 
   const factory NotificationState.tokenReceived(String token) = _TokenReceived;
+
+  const factory NotificationState.callAccepted(String callId) = _CallAccepted;
+
+  const factory NotificationState.callDeclined(String callId) = _CallDeclined;
 }

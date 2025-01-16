@@ -23,13 +23,11 @@ class DeviceTokenScreen extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             }
-
             if (snapshot.hasError) {
               return Center(
                 child: Text('Lỗi: ${snapshot.error}'),
               );
             }
-
             final token = snapshot.data;
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

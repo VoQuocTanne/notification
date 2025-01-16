@@ -18,41 +18,57 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NotificationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String token, String title, String body)
-        sendNotification,
+    required TResult Function(
+            String token, String callerName, String phoneNumber, String callId)
+        sendCallNotification,
     required TResult Function() getDeviceToken,
+    required TResult Function(String callId) acceptCall,
+    required TResult Function(String callId) declineCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String token, String title, String body)?
-        sendNotification,
+    TResult? Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult? Function()? getDeviceToken,
+    TResult? Function(String callId)? acceptCall,
+    TResult? Function(String callId)? declineCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, String title, String body)? sendNotification,
+    TResult Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult Function()? getDeviceToken,
+    TResult Function(String callId)? acceptCall,
+    TResult Function(String callId)? declineCall,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendNotification value) sendNotification,
+    required TResult Function(_SendCallNotification value) sendCallNotification,
     required TResult Function(_GetDeviceToken value) getDeviceToken,
+    required TResult Function(_AcceptCall value) acceptCall,
+    required TResult Function(_DeclineCall value) declineCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendNotification value)? sendNotification,
+    TResult? Function(_SendCallNotification value)? sendCallNotification,
     TResult? Function(_GetDeviceToken value)? getDeviceToken,
+    TResult? Function(_AcceptCall value)? acceptCall,
+    TResult? Function(_DeclineCall value)? declineCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendNotification value)? sendNotification,
+    TResult Function(_SendCallNotification value)? sendCallNotification,
     TResult Function(_GetDeviceToken value)? getDeviceToken,
+    TResult Function(_AcceptCall value)? acceptCall,
+    TResult Function(_DeclineCall value)? declineCall,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -80,20 +96,21 @@ class _$NotificationEventCopyWithImpl<$Res, $Val extends NotificationEvent>
 }
 
 /// @nodoc
-abstract class _$$SendNotificationImplCopyWith<$Res> {
-  factory _$$SendNotificationImplCopyWith(_$SendNotificationImpl value,
-          $Res Function(_$SendNotificationImpl) then) =
-      __$$SendNotificationImplCopyWithImpl<$Res>;
+abstract class _$$SendCallNotificationImplCopyWith<$Res> {
+  factory _$$SendCallNotificationImplCopyWith(_$SendCallNotificationImpl value,
+          $Res Function(_$SendCallNotificationImpl) then) =
+      __$$SendCallNotificationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String token, String title, String body});
+  $Res call(
+      {String token, String callerName, String phoneNumber, String callId});
 }
 
 /// @nodoc
-class __$$SendNotificationImplCopyWithImpl<$Res>
-    extends _$NotificationEventCopyWithImpl<$Res, _$SendNotificationImpl>
-    implements _$$SendNotificationImplCopyWith<$Res> {
-  __$$SendNotificationImplCopyWithImpl(_$SendNotificationImpl _value,
-      $Res Function(_$SendNotificationImpl) _then)
+class __$$SendCallNotificationImplCopyWithImpl<$Res>
+    extends _$NotificationEventCopyWithImpl<$Res, _$SendCallNotificationImpl>
+    implements _$$SendCallNotificationImplCopyWith<$Res> {
+  __$$SendCallNotificationImplCopyWithImpl(_$SendCallNotificationImpl _value,
+      $Res Function(_$SendCallNotificationImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of NotificationEvent
@@ -102,21 +119,26 @@ class __$$SendNotificationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? token = null,
-    Object? title = null,
-    Object? body = null,
+    Object? callerName = null,
+    Object? phoneNumber = null,
+    Object? callId = null,
   }) {
-    return _then(_$SendNotificationImpl(
+    return _then(_$SendCallNotificationImpl(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      callerName: null == callerName
+          ? _value.callerName
+          : callerName // ignore: cast_nullable_to_non_nullable
               as String,
-      body: null == body
-          ? _value.body
-          : body // ignore: cast_nullable_to_non_nullable
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      callId: null == callId
+          ? _value.callId
+          : callId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -124,73 +146,93 @@ class __$$SendNotificationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendNotificationImpl implements _SendNotification {
-  const _$SendNotificationImpl(
-      {required this.token, required this.title, required this.body});
+class _$SendCallNotificationImpl implements _SendCallNotification {
+  const _$SendCallNotificationImpl(
+      {required this.token,
+      required this.callerName,
+      required this.phoneNumber,
+      required this.callId});
 
   @override
   final String token;
   @override
-  final String title;
+  final String callerName;
   @override
-  final String body;
+  final String phoneNumber;
+  @override
+  final String callId;
 
   @override
   String toString() {
-    return 'NotificationEvent.sendNotification(token: $token, title: $title, body: $body)';
+    return 'NotificationEvent.sendCallNotification(token: $token, callerName: $callerName, phoneNumber: $phoneNumber, callId: $callId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendNotificationImpl &&
+            other is _$SendCallNotificationImpl &&
             (identical(other.token, token) || other.token == token) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body));
+            (identical(other.callerName, callerName) ||
+                other.callerName == callerName) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.callId, callId) || other.callId == callId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token, title, body);
+  int get hashCode =>
+      Object.hash(runtimeType, token, callerName, phoneNumber, callId);
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendNotificationImplCopyWith<_$SendNotificationImpl> get copyWith =>
-      __$$SendNotificationImplCopyWithImpl<_$SendNotificationImpl>(
-          this, _$identity);
+  _$$SendCallNotificationImplCopyWith<_$SendCallNotificationImpl>
+      get copyWith =>
+          __$$SendCallNotificationImplCopyWithImpl<_$SendCallNotificationImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String token, String title, String body)
-        sendNotification,
+    required TResult Function(
+            String token, String callerName, String phoneNumber, String callId)
+        sendCallNotification,
     required TResult Function() getDeviceToken,
+    required TResult Function(String callId) acceptCall,
+    required TResult Function(String callId) declineCall,
   }) {
-    return sendNotification(token, title, body);
+    return sendCallNotification(token, callerName, phoneNumber, callId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String token, String title, String body)?
-        sendNotification,
+    TResult? Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult? Function()? getDeviceToken,
+    TResult? Function(String callId)? acceptCall,
+    TResult? Function(String callId)? declineCall,
   }) {
-    return sendNotification?.call(token, title, body);
+    return sendCallNotification?.call(token, callerName, phoneNumber, callId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, String title, String body)? sendNotification,
+    TResult Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult Function()? getDeviceToken,
+    TResult Function(String callId)? acceptCall,
+    TResult Function(String callId)? declineCall,
     required TResult orElse(),
   }) {
-    if (sendNotification != null) {
-      return sendNotification(token, title, body);
+    if (sendCallNotification != null) {
+      return sendCallNotification(token, callerName, phoneNumber, callId);
     }
     return orElse();
   }
@@ -198,50 +240,58 @@ class _$SendNotificationImpl implements _SendNotification {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendNotification value) sendNotification,
+    required TResult Function(_SendCallNotification value) sendCallNotification,
     required TResult Function(_GetDeviceToken value) getDeviceToken,
+    required TResult Function(_AcceptCall value) acceptCall,
+    required TResult Function(_DeclineCall value) declineCall,
   }) {
-    return sendNotification(this);
+    return sendCallNotification(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendNotification value)? sendNotification,
+    TResult? Function(_SendCallNotification value)? sendCallNotification,
     TResult? Function(_GetDeviceToken value)? getDeviceToken,
+    TResult? Function(_AcceptCall value)? acceptCall,
+    TResult? Function(_DeclineCall value)? declineCall,
   }) {
-    return sendNotification?.call(this);
+    return sendCallNotification?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendNotification value)? sendNotification,
+    TResult Function(_SendCallNotification value)? sendCallNotification,
     TResult Function(_GetDeviceToken value)? getDeviceToken,
+    TResult Function(_AcceptCall value)? acceptCall,
+    TResult Function(_DeclineCall value)? declineCall,
     required TResult orElse(),
   }) {
-    if (sendNotification != null) {
-      return sendNotification(this);
+    if (sendCallNotification != null) {
+      return sendCallNotification(this);
     }
     return orElse();
   }
 }
 
-abstract class _SendNotification implements NotificationEvent {
-  const factory _SendNotification(
+abstract class _SendCallNotification implements NotificationEvent {
+  const factory _SendCallNotification(
       {required final String token,
-      required final String title,
-      required final String body}) = _$SendNotificationImpl;
+      required final String callerName,
+      required final String phoneNumber,
+      required final String callId}) = _$SendCallNotificationImpl;
 
   String get token;
-  String get title;
-  String get body;
+  String get callerName;
+  String get phoneNumber;
+  String get callId;
 
   /// Create a copy of NotificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendNotificationImplCopyWith<_$SendNotificationImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SendCallNotificationImplCopyWith<_$SendCallNotificationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -285,9 +335,12 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String token, String title, String body)
-        sendNotification,
+    required TResult Function(
+            String token, String callerName, String phoneNumber, String callId)
+        sendCallNotification,
     required TResult Function() getDeviceToken,
+    required TResult Function(String callId) acceptCall,
+    required TResult Function(String callId) declineCall,
   }) {
     return getDeviceToken();
   }
@@ -295,9 +348,12 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String token, String title, String body)?
-        sendNotification,
+    TResult? Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult? Function()? getDeviceToken,
+    TResult? Function(String callId)? acceptCall,
+    TResult? Function(String callId)? declineCall,
   }) {
     return getDeviceToken?.call();
   }
@@ -305,8 +361,12 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String token, String title, String body)? sendNotification,
+    TResult Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
     TResult Function()? getDeviceToken,
+    TResult Function(String callId)? acceptCall,
+    TResult Function(String callId)? declineCall,
     required TResult orElse(),
   }) {
     if (getDeviceToken != null) {
@@ -318,8 +378,10 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SendNotification value) sendNotification,
+    required TResult Function(_SendCallNotification value) sendCallNotification,
     required TResult Function(_GetDeviceToken value) getDeviceToken,
+    required TResult Function(_AcceptCall value) acceptCall,
+    required TResult Function(_DeclineCall value) declineCall,
   }) {
     return getDeviceToken(this);
   }
@@ -327,8 +389,10 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SendNotification value)? sendNotification,
+    TResult? Function(_SendCallNotification value)? sendCallNotification,
     TResult? Function(_GetDeviceToken value)? getDeviceToken,
+    TResult? Function(_AcceptCall value)? acceptCall,
+    TResult? Function(_DeclineCall value)? declineCall,
   }) {
     return getDeviceToken?.call(this);
   }
@@ -336,8 +400,10 @@ class _$GetDeviceTokenImpl implements _GetDeviceToken {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SendNotification value)? sendNotification,
+    TResult Function(_SendCallNotification value)? sendCallNotification,
     TResult Function(_GetDeviceToken value)? getDeviceToken,
+    TResult Function(_AcceptCall value)? acceptCall,
+    TResult Function(_DeclineCall value)? declineCall,
     required TResult orElse(),
   }) {
     if (getDeviceToken != null) {
@@ -352,6 +418,323 @@ abstract class _GetDeviceToken implements NotificationEvent {
 }
 
 /// @nodoc
+abstract class _$$AcceptCallImplCopyWith<$Res> {
+  factory _$$AcceptCallImplCopyWith(
+          _$AcceptCallImpl value, $Res Function(_$AcceptCallImpl) then) =
+      __$$AcceptCallImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String callId});
+}
+
+/// @nodoc
+class __$$AcceptCallImplCopyWithImpl<$Res>
+    extends _$NotificationEventCopyWithImpl<$Res, _$AcceptCallImpl>
+    implements _$$AcceptCallImplCopyWith<$Res> {
+  __$$AcceptCallImplCopyWithImpl(
+      _$AcceptCallImpl _value, $Res Function(_$AcceptCallImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callId = null,
+  }) {
+    return _then(_$AcceptCallImpl(
+      callId: null == callId
+          ? _value.callId
+          : callId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AcceptCallImpl implements _AcceptCall {
+  const _$AcceptCallImpl({required this.callId});
+
+  @override
+  final String callId;
+
+  @override
+  String toString() {
+    return 'NotificationEvent.acceptCall(callId: $callId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptCallImpl &&
+            (identical(other.callId, callId) || other.callId == callId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, callId);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AcceptCallImplCopyWith<_$AcceptCallImpl> get copyWith =>
+      __$$AcceptCallImplCopyWithImpl<_$AcceptCallImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String token, String callerName, String phoneNumber, String callId)
+        sendCallNotification,
+    required TResult Function() getDeviceToken,
+    required TResult Function(String callId) acceptCall,
+    required TResult Function(String callId) declineCall,
+  }) {
+    return acceptCall(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
+    TResult? Function()? getDeviceToken,
+    TResult? Function(String callId)? acceptCall,
+    TResult? Function(String callId)? declineCall,
+  }) {
+    return acceptCall?.call(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
+    TResult Function()? getDeviceToken,
+    TResult Function(String callId)? acceptCall,
+    TResult Function(String callId)? declineCall,
+    required TResult orElse(),
+  }) {
+    if (acceptCall != null) {
+      return acceptCall(callId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendCallNotification value) sendCallNotification,
+    required TResult Function(_GetDeviceToken value) getDeviceToken,
+    required TResult Function(_AcceptCall value) acceptCall,
+    required TResult Function(_DeclineCall value) declineCall,
+  }) {
+    return acceptCall(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendCallNotification value)? sendCallNotification,
+    TResult? Function(_GetDeviceToken value)? getDeviceToken,
+    TResult? Function(_AcceptCall value)? acceptCall,
+    TResult? Function(_DeclineCall value)? declineCall,
+  }) {
+    return acceptCall?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendCallNotification value)? sendCallNotification,
+    TResult Function(_GetDeviceToken value)? getDeviceToken,
+    TResult Function(_AcceptCall value)? acceptCall,
+    TResult Function(_DeclineCall value)? declineCall,
+    required TResult orElse(),
+  }) {
+    if (acceptCall != null) {
+      return acceptCall(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AcceptCall implements NotificationEvent {
+  const factory _AcceptCall({required final String callId}) = _$AcceptCallImpl;
+
+  String get callId;
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AcceptCallImplCopyWith<_$AcceptCallImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeclineCallImplCopyWith<$Res> {
+  factory _$$DeclineCallImplCopyWith(
+          _$DeclineCallImpl value, $Res Function(_$DeclineCallImpl) then) =
+      __$$DeclineCallImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String callId});
+}
+
+/// @nodoc
+class __$$DeclineCallImplCopyWithImpl<$Res>
+    extends _$NotificationEventCopyWithImpl<$Res, _$DeclineCallImpl>
+    implements _$$DeclineCallImplCopyWith<$Res> {
+  __$$DeclineCallImplCopyWithImpl(
+      _$DeclineCallImpl _value, $Res Function(_$DeclineCallImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callId = null,
+  }) {
+    return _then(_$DeclineCallImpl(
+      callId: null == callId
+          ? _value.callId
+          : callId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeclineCallImpl implements _DeclineCall {
+  const _$DeclineCallImpl({required this.callId});
+
+  @override
+  final String callId;
+
+  @override
+  String toString() {
+    return 'NotificationEvent.declineCall(callId: $callId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeclineCallImpl &&
+            (identical(other.callId, callId) || other.callId == callId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, callId);
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeclineCallImplCopyWith<_$DeclineCallImpl> get copyWith =>
+      __$$DeclineCallImplCopyWithImpl<_$DeclineCallImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String token, String callerName, String phoneNumber, String callId)
+        sendCallNotification,
+    required TResult Function() getDeviceToken,
+    required TResult Function(String callId) acceptCall,
+    required TResult Function(String callId) declineCall,
+  }) {
+    return declineCall(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
+    TResult? Function()? getDeviceToken,
+    TResult? Function(String callId)? acceptCall,
+    TResult? Function(String callId)? declineCall,
+  }) {
+    return declineCall?.call(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String token, String callerName, String phoneNumber, String callId)?
+        sendCallNotification,
+    TResult Function()? getDeviceToken,
+    TResult Function(String callId)? acceptCall,
+    TResult Function(String callId)? declineCall,
+    required TResult orElse(),
+  }) {
+    if (declineCall != null) {
+      return declineCall(callId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SendCallNotification value) sendCallNotification,
+    required TResult Function(_GetDeviceToken value) getDeviceToken,
+    required TResult Function(_AcceptCall value) acceptCall,
+    required TResult Function(_DeclineCall value) declineCall,
+  }) {
+    return declineCall(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SendCallNotification value)? sendCallNotification,
+    TResult? Function(_GetDeviceToken value)? getDeviceToken,
+    TResult? Function(_AcceptCall value)? acceptCall,
+    TResult? Function(_DeclineCall value)? declineCall,
+  }) {
+    return declineCall?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SendCallNotification value)? sendCallNotification,
+    TResult Function(_GetDeviceToken value)? getDeviceToken,
+    TResult Function(_AcceptCall value)? acceptCall,
+    TResult Function(_DeclineCall value)? declineCall,
+    required TResult orElse(),
+  }) {
+    if (declineCall != null) {
+      return declineCall(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeclineCall implements NotificationEvent {
+  const factory _DeclineCall({required final String callId}) =
+      _$DeclineCallImpl;
+
+  String get callId;
+
+  /// Create a copy of NotificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeclineCallImplCopyWith<_$DeclineCallImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -360,6 +743,8 @@ mixin _$NotificationState {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -369,6 +754,8 @@ mixin _$NotificationState {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -378,6 +765,8 @@ mixin _$NotificationState {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -388,6 +777,8 @@ mixin _$NotificationState {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -397,6 +788,8 @@ mixin _$NotificationState {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -406,6 +799,8 @@ mixin _$NotificationState {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -478,6 +873,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) {
     return initial();
   }
@@ -490,6 +887,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) {
     return initial?.call();
   }
@@ -502,6 +901,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -518,6 +919,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) {
     return initial(this);
   }
@@ -530,6 +933,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) {
     return initial?.call(this);
   }
@@ -542,6 +947,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -601,6 +1008,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) {
     return loading();
   }
@@ -613,6 +1022,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) {
     return loading?.call();
   }
@@ -625,6 +1036,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -641,6 +1054,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) {
     return loading(this);
   }
@@ -653,6 +1068,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) {
     return loading?.call(this);
   }
@@ -665,6 +1082,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -724,6 +1143,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) {
     return success();
   }
@@ -736,6 +1157,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) {
     return success?.call();
   }
@@ -748,6 +1171,8 @@ class _$SuccessImpl implements _Success {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -764,6 +1189,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) {
     return success(this);
   }
@@ -776,6 +1203,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) {
     return success?.call(this);
   }
@@ -788,6 +1217,8 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -874,6 +1305,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) {
     return failure(error);
   }
@@ -886,6 +1319,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) {
     return failure?.call(error);
   }
@@ -898,6 +1333,8 @@ class _$FailureImpl implements _Failure {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -914,6 +1351,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) {
     return failure(this);
   }
@@ -926,6 +1365,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) {
     return failure?.call(this);
   }
@@ -938,6 +1379,8 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -1032,6 +1475,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     required TResult Function() success,
     required TResult Function(String error) failure,
     required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
   }) {
     return tokenReceived(token);
   }
@@ -1044,6 +1489,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     TResult? Function()? success,
     TResult? Function(String error)? failure,
     TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
   }) {
     return tokenReceived?.call(token);
   }
@@ -1056,6 +1503,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     TResult Function()? success,
     TResult Function(String error)? failure,
     TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
     required TResult orElse(),
   }) {
     if (tokenReceived != null) {
@@ -1072,6 +1521,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     required TResult Function(_Success value) success,
     required TResult Function(_Failure value) failure,
     required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
   }) {
     return tokenReceived(this);
   }
@@ -1084,6 +1535,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     TResult? Function(_Success value)? success,
     TResult? Function(_Failure value)? failure,
     TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
   }) {
     return tokenReceived?.call(this);
   }
@@ -1096,6 +1549,8 @@ class _$TokenReceivedImpl implements _TokenReceived {
     TResult Function(_Success value)? success,
     TResult Function(_Failure value)? failure,
     TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
     required TResult orElse(),
   }) {
     if (tokenReceived != null) {
@@ -1114,5 +1569,345 @@ abstract class _TokenReceived implements NotificationState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TokenReceivedImplCopyWith<_$TokenReceivedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CallAcceptedImplCopyWith<$Res> {
+  factory _$$CallAcceptedImplCopyWith(
+          _$CallAcceptedImpl value, $Res Function(_$CallAcceptedImpl) then) =
+      __$$CallAcceptedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String callId});
+}
+
+/// @nodoc
+class __$$CallAcceptedImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res, _$CallAcceptedImpl>
+    implements _$$CallAcceptedImplCopyWith<$Res> {
+  __$$CallAcceptedImplCopyWithImpl(
+      _$CallAcceptedImpl _value, $Res Function(_$CallAcceptedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callId = null,
+  }) {
+    return _then(_$CallAcceptedImpl(
+      null == callId
+          ? _value.callId
+          : callId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CallAcceptedImpl implements _CallAccepted {
+  const _$CallAcceptedImpl(this.callId);
+
+  @override
+  final String callId;
+
+  @override
+  String toString() {
+    return 'NotificationState.callAccepted(callId: $callId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CallAcceptedImpl &&
+            (identical(other.callId, callId) || other.callId == callId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, callId);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CallAcceptedImplCopyWith<_$CallAcceptedImpl> get copyWith =>
+      __$$CallAcceptedImplCopyWithImpl<_$CallAcceptedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
+  }) {
+    return callAccepted(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
+  }) {
+    return callAccepted?.call(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
+    required TResult orElse(),
+  }) {
+    if (callAccepted != null) {
+      return callAccepted(callId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
+  }) {
+    return callAccepted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
+  }) {
+    return callAccepted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
+    required TResult orElse(),
+  }) {
+    if (callAccepted != null) {
+      return callAccepted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CallAccepted implements NotificationState {
+  const factory _CallAccepted(final String callId) = _$CallAcceptedImpl;
+
+  String get callId;
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallAcceptedImplCopyWith<_$CallAcceptedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CallDeclinedImplCopyWith<$Res> {
+  factory _$$CallDeclinedImplCopyWith(
+          _$CallDeclinedImpl value, $Res Function(_$CallDeclinedImpl) then) =
+      __$$CallDeclinedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String callId});
+}
+
+/// @nodoc
+class __$$CallDeclinedImplCopyWithImpl<$Res>
+    extends _$NotificationStateCopyWithImpl<$Res, _$CallDeclinedImpl>
+    implements _$$CallDeclinedImplCopyWith<$Res> {
+  __$$CallDeclinedImplCopyWithImpl(
+      _$CallDeclinedImpl _value, $Res Function(_$CallDeclinedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? callId = null,
+  }) {
+    return _then(_$CallDeclinedImpl(
+      null == callId
+          ? _value.callId
+          : callId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CallDeclinedImpl implements _CallDeclined {
+  const _$CallDeclinedImpl(this.callId);
+
+  @override
+  final String callId;
+
+  @override
+  String toString() {
+    return 'NotificationState.callDeclined(callId: $callId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CallDeclinedImpl &&
+            (identical(other.callId, callId) || other.callId == callId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, callId);
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CallDeclinedImplCopyWith<_$CallDeclinedImpl> get copyWith =>
+      __$$CallDeclinedImplCopyWithImpl<_$CallDeclinedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(String error) failure,
+    required TResult Function(String token) tokenReceived,
+    required TResult Function(String callId) callAccepted,
+    required TResult Function(String callId) callDeclined,
+  }) {
+    return callDeclined(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(String error)? failure,
+    TResult? Function(String token)? tokenReceived,
+    TResult? Function(String callId)? callAccepted,
+    TResult? Function(String callId)? callDeclined,
+  }) {
+    return callDeclined?.call(callId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(String error)? failure,
+    TResult Function(String token)? tokenReceived,
+    TResult Function(String callId)? callAccepted,
+    TResult Function(String callId)? callDeclined,
+    required TResult orElse(),
+  }) {
+    if (callDeclined != null) {
+      return callDeclined(callId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Failure value) failure,
+    required TResult Function(_TokenReceived value) tokenReceived,
+    required TResult Function(_CallAccepted value) callAccepted,
+    required TResult Function(_CallDeclined value) callDeclined,
+  }) {
+    return callDeclined(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_TokenReceived value)? tokenReceived,
+    TResult? Function(_CallAccepted value)? callAccepted,
+    TResult? Function(_CallDeclined value)? callDeclined,
+  }) {
+    return callDeclined?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_TokenReceived value)? tokenReceived,
+    TResult Function(_CallAccepted value)? callAccepted,
+    TResult Function(_CallDeclined value)? callDeclined,
+    required TResult orElse(),
+  }) {
+    if (callDeclined != null) {
+      return callDeclined(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CallDeclined implements NotificationState {
+  const factory _CallDeclined(final String callId) = _$CallDeclinedImpl;
+
+  String get callId;
+
+  /// Create a copy of NotificationState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallDeclinedImplCopyWith<_$CallDeclinedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
