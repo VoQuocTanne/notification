@@ -13,7 +13,14 @@ class NotificationSenderScreen extends StatelessWidget {
       child: BlocConsumer<NotificationBloc, NotificationState>(
         listener: (context, state) {
           state.maybeWhen(
-            success: () => _showSnackBar(context, 'Gửi thông báo thành công'),
+            success: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Gửi thông báo thành công'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
+            },
             failure: (error) => _showSnackBar(context, 'Lỗi: $error'),
             orElse: () => null,
           );
@@ -21,7 +28,7 @@ class NotificationSenderScreen extends StatelessWidget {
         builder: (context, state) {
           final bloc = context.read<NotificationBloc>();
           return Scaffold(
-            appBar: AppBar(title: const Text('Gửi thông báo')),
+            appBar: AppBar(title: const Text('Gửi thông báo cuộc gọi')),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -42,34 +49,46 @@ class NotificationSenderScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: bloc.titleController,
+                    controller: bloc.callerNameController,
                     decoration: const InputDecoration(
-                      labelText: 'Tiêu đề',
-                      hintText: 'Nhập tiêu đề thông báo',
+                      labelText: 'Tên người gọi',
+                      hintText: 'Nhập tên người gọi',
+                      prefixIcon: Icon(Icons.person),
                     ),
                   ),
                   const SizedBox(height: 16),
                   TextField(
-                    controller: bloc.bodyController,
+                    controller: bloc.phoneNumberController,
                     decoration: const InputDecoration(
-                      labelText: 'Nội dung',
-                      hintText: 'Nhập nội dung thông báo',
+                      labelText: 'Số điện thoại',
+                      hintText: 'Nhập số điện thoại',
+                      prefixIcon: Icon(Icons.phone),
                     ),
-                    maxLines: 3,
+                    keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 24),
                   state.maybeWhen(
                     loading: () => const CircularProgressIndicator(),
-                    orElse: () => ElevatedButton(
+                    orElse: () => ElevatedButton.icon(
                       onPressed: () {
-                        final bloc = context.read<NotificationBloc>();
-                        bloc.add(NotificationEvent.sendNotification(
+                        final callId =
+                            DateTime.now().millisecondsSinceEpoch.toString();
+                        bloc.add(NotificationEvent.sendCallNotification(
                           token: bloc.tokenController.text.trim(),
-                          title: bloc.titleController.text.trim(),
-                          body: bloc.bodyController.text.trim(),
+                          callerName: bloc.callerNameController.text.trim(),
+                          phoneNumber: bloc.phoneNumberController.text.trim(),
+                          callId: callId,
                         ));
                       },
-                      child: const Text('Gửi thông báo'),
+                      icon: const Icon(Icons.call),
+                      label: const Text('Gửi thông báo cuộc gọi'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                      ),
                     ),
                   ),
                 ],
